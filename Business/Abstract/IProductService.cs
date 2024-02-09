@@ -1,4 +1,7 @@
-﻿public interface IProductService
+﻿using CleanCodeDemo.Entities.Concrete;
+
+public interface IProductService
 {
-    void Sell(Product product, Customer customer);
+    void Sell(Product product, Officer officer);
+    void Sell(Product product, Student student);
 }

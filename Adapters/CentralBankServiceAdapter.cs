@@ -1,6 +1,4 @@
-﻿
-
-
+﻿//Merkez bankasının kodu gibi düşünelim
 public class CentralBankServiceAdapter : IBankService
 {
     public decimal ConvertRate(CurrencyRate currencyRate)

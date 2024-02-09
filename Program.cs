@@ -1,14 +1,14 @@
-﻿
+﻿using CleanCodeDemo.Entities.Concrete;
+
 Customer customer1 = new Customer
 {
     Id = 1,
-    Name = "Engin",
-    IsStudent = true,
-    IsOfficer = false
+    Name = "Melih"
 };
 
 IProductService productService = new ProductManager(new IsBankServiceAdapter());
-productService.Sell(new Product { Id = 1, Name = "Laptop", Price = 1000 }, new Customer { Id = 1, Name = "Engin", IsStudent = true, IsOfficer = false });
+productService.Sell(new Product { Id = 1, Name = "Laptop", Price = 1000 }, new Officer { Id = 1, Name = "Melih" });
+productService.Sell(new Product { Id = 1, Name = "Laptop", Price = 5000 }, new Student { Id = 2, Name = "Mehmet" });
 
 public class FakeBankService : IBankService
 {

@@ -1,6 +1,6 @@
-﻿
-
-class ProductManager : IProductService
+﻿using CleanCodeDemo.Business.Abstract;
+using CleanCodeDemo.Entities.Concrete;
+class ProductManager : BaseProcedureManager, IProductService
 {
     private IBankService _bankService;
 
@@ -9,21 +9,18 @@ class ProductManager : IProductService
         _bankService = bankService;
     }
 
-    public void Sell(Product product, Customer customer)
+    public override void Sell(Product product, Student student)
     {
-        //Burası refactor edilecek.
-
         decimal price = product.Price;
-        if (customer.IsStudent)
-        {
-            price -= product.Price * 0.1M;
-        }
-        if (customer.IsOfficer)
-        {
-            price -= product.Price * 0.2M;
-        }
+        price -= product.Price * 0.1M;
         price = _bankService.ConvertRate(new CurrencyRate { Currency = 1, Price = price });
         Console.WriteLine(price);
-        Console.ReadLine();
+    }
+    public override void Sell(Product product, Officer officer)
+    {
+        decimal price = product.Price;
+        price -= product.Price * 0.2M;
+        price = _bankService.ConvertRate(new CurrencyRate { Currency = 1, Price = price });
+        Console.WriteLine(price);
     }
 }
